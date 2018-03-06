@@ -15,3 +15,4 @@ use Mix.Config
 
 config :ex_payable, merchant_id: System.get_env("OPENPAY_MERCHANT_ID")
 config :ex_payable, api_key: System.get_env("OPENPAY_API_KEY")
+config :ex_payable, api_base_url: System.get_env("OPENPAY_API_BASE_URL")
