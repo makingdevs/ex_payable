@@ -1,21 +1,5 @@
-# This file is responsible for configuring your application
-# and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
-# This configuration is loaded before any dependency and is restricted
-# to this project. If another project depends on this project, this
-# file won't be loaded nor affect the parent project. For this reason,
-# if you want to provide default values for your application for
-# 3rd-party users, it should be done in your "mix.exs" file.
-
-# You can configure your application as:
-#
-#     config :ex_payable, key: :value
-#
-# and access this configuration in your application as:
-#
-#     Application.get_env(:ex_payable, :key)
-#
 # You can also configure a 3rd-party app:
 #
 #     config :logger, level: :info
@@ -28,3 +12,6 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
+
+config :ex_payable, merchant_id: System.get_env("OPENPAY_MERCHANT_ID")
+config :ex_payable, api_key: System.get_env("OPENPAY_API_KEY")
