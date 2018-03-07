@@ -43,22 +43,19 @@ defmodule ExPayable do
     |> Poison.decode!
   end
 
-  def req_headers(key) do
+  def req_headers() do
     Map.new
       |> Map.put("Content-Type",  "application/json")
   end
 
-  def make_request(method, endpoint, body \\ %{}, headers \\ %{}, options \\ []) do
-    make_request_with_key( method, endpoint, openpay_api_key(), body, headers, options )
-  end
-
-  def make_request_with_key( method, endpoint, key, body \\ %{}, headers \\ %{}, options \\ []) do
-    requestHeader = req_headers(key)
+  def make_request( method, endpoint, body \\ %{}, headers \\ %{}, options \\ []) do
+    rb = ExPayable.Util.encode_query(body)
+    requestHeader = req_headers()
         |> Map.merge(headers)
         |> Map.to_list
     {:ok, response} =
       case method do
-        _ -> request(method, endpoint, "", requestHeader, options)
+        _ -> request(method, endpoint, rb, requestHeader, options)
       end
       response.body
   end
