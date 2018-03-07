@@ -9,6 +9,32 @@ defmodule ExPayable.Customers do
   @endpoint "customers"
 
   @doc """
+  Create a customer.
+
+  Creates a customer for a customer or customer using params. `params`
+  must include a source.
+
+  Returns `{:ok, customer}` tuple.
+
+  ## Examples
+
+      params = [
+        name: "customer name",
+        last_name: "",
+        email: "customer_email@me.com",
+        phone_number: "",
+        # address: "",
+        # external_id: ""
+      ]
+
+      {:ok, customer} = ExOpenpay.Customers.create(params)
+
+  """
+  def create(params) do
+    ExPayable.make_request(:post, @endpoint, params)
+  end
+
+  @doc """
    Get a customer.
    Gets a customer for given owner using customer ID.
    Returns a `{:ok, customer}` tuple.
