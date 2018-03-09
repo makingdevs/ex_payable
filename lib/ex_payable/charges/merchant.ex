@@ -36,7 +36,7 @@ defmodule ExPayable.Charges.Merchant do
         redirect_url: "http://www.openpay.mx/index.html"
       }
 
-      {:ok, charge} = ExPayable.Charges.create(1000, params)
+      {:ok, charge} = ExPayable.Charges.Merchant.create(1000, params)
 
   """
   def create(params) do
@@ -44,11 +44,24 @@ defmodule ExPayable.Charges.Merchant do
     |> ExPayable.Util.handle_openpay_response
   end
 
+  @doc """
+  Get a charge for default Merchant.
+  Returns a `{:ok, customer}` tuple.
+  ## Examples
+      {:ok, charge} = ExPayable.Charges.Merchant.get(id)
+  """
   def get(id) do
     ExPayable.make_request(:get, "#{@endpoint}/#{id}")
     |> ExPayable.Util.handle_openpay_response
   end
 
+  @doc """
+  List all charges for default Merchant.
+  ##Example
+  ```
+  {:ok, charges} = ExPayable.Charges.Merchant.all(customer_id)
+  ```
+  """
   def all do
     ExPayable.make_request(:get, @endpoint)
     |> ExPayable.Util.handle_openpay_full_response
