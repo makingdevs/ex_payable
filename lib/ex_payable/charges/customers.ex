@@ -3,6 +3,8 @@ defmodule ExPayable.Charges.Customers do
   Functions for working with charges at Openpay. Through this API you can:
 
     * create a charge
+    * get a charge
+    * list charges
 
   You can make charges at the customer level
 
