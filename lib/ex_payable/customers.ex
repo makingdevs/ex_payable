@@ -32,6 +32,7 @@ defmodule ExPayable.Customers do
   """
   def create(params) do
     ExPayable.make_request(:post, @endpoint, params)
+    |> ExPayable.Util.handle_openpay_response
   end
 
   @doc """
@@ -43,6 +44,7 @@ defmodule ExPayable.Customers do
    """
   def get(id) do
     ExPayable.make_request(:get, "#{@endpoint}/#{id}")
+    |> ExPayable.Util.handle_openpay_response
   end
 
 end
