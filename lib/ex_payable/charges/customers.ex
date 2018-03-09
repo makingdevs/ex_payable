@@ -40,4 +40,27 @@ defmodule ExPayable.Charges.Customers do
     |> ExPayable.Util.handle_openpay_response
   end
 
+  @doc """
+  Get a charge for given owner using customer ID.
+  Returns a `{:ok, customer}` tuple.
+  ## Examples
+      {:ok, charge} = ExPayable.Charges.Customers.get(customer_id, charge_id)
+  """
+  def get(customer_id, charge_id) do
+    ExPayable.make_request(:get, "#{endpoint_for_charges(customer_id)}/#{charge_id}")
+    |> ExPayable.Util.handle_openpay_response
+  end
+
+  @doc """
+  List all charges given owner using customer ID.
+  ##Example
+  ```
+  {:ok, charges} = ExPayable.Charges.Customers.all(customer_id)
+  ```
+  """
+  def all(customer_id) do
+    ExPayable.make_request(:get, endpoint_for_charges(customer_id))
+    |> ExPayable.Util.handle_openpay_full_response
+  end
+
 end
