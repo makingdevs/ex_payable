@@ -15,6 +15,13 @@ defmodule ExPayable.Util do
     end
   end
 
+  def handle_openpay_full_response(response) do
+    cond do
+      response[:error] -> {:error, response}
+      true -> {:ok, response}
+    end
+  end
+
   @doc """
   Takes a keyword list and turns it into proper query values.
 
