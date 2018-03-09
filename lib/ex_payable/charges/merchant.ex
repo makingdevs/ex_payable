@@ -3,6 +3,8 @@ defmodule ExPayable.Charges.Merchant do
   Functions for working with charges at Openpay. Through this API you can:
 
     * create a charge
+    * get a charge
+    * list charges
 
   You can make charges at the level of merchant
 
@@ -46,7 +48,7 @@ defmodule ExPayable.Charges.Merchant do
 
   @doc """
   Get a charge for default Merchant.
-  Returns a `{:ok, customer}` tuple.
+  Returns a `{:ok, charge}` tuple.
   ## Examples
       {:ok, charge} = ExPayable.Charges.Merchant.get(id)
   """
