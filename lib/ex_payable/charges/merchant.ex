@@ -44,4 +44,14 @@ defmodule ExPayable.Charges.Merchant do
     |> ExPayable.Util.handle_openpay_response
   end
 
+  def get(id) do
+    ExPayable.make_request(:get, "#{@endpoint}/#{id}")
+    |> ExPayable.Util.handle_openpay_response
+  end
+
+  def all do
+    ExPayable.make_request(:get, @endpoint)
+    |> ExPayable.Util.handle_openpay_full_response
+  end
+
 end
